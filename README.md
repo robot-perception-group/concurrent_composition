@@ -11,33 +11,34 @@ See: https://www.gnu.org/licenses/gpl-3.0.en.html
 
 
 
-# install the environment
-1. install raisim follow the instruction: https://raisim.com/sections/Installation.html
-2. clone this repository 
-3. specify the workspace in the console
+# installation
+- clone this repository 
+- specify the workspace in the console
 ```console
 export RAISIM_WORKSPACE="$PWD/raisimLib"
 export WORKSPACE="$PWD/concurrent_composition"
 ```
 
-4. copy the environment to the Raisim workspace
+- create conda environment and install the dependencies 
 ```console
-cp -r $WORKSPACE/raisim_multitask_env/ $RAISIM_WORKSPACE/raisimLib/raisimGymTorch/raisimGymTorch/env/envs/
+cd $WORKSPACE/rl
+conda create --name concurrent --file requirement.txt python=3.10
 ```
 
-5. build the environment 
-```console
-python3 $RAISIM_WORKSPACE/raisimLib/raisimGymTorch setup.py develop
-```
-Note that a Raisim License is required.
+- clone and install raisim follow the instruction: https://raisim.com/sections/Installation.html
 
 
-# install the agent
-6. create a conda environment and install dependencies. 
+- copy the environment to the Raisim workspace
 ```console
-cd rl
-conda create --name <env_name> --file requirement.txt python=3.10
+cp -r $WORKSPACE/raisim_multitask_env/* $RAISIM_WORKSPACE/raisimGymTorch/raisimGymTorch/env/envs/
 ```
+
+- build the environment 
+```console
+cd $RAISIM_WORKSPACE/raisimGymTorch
+python setup.py develop
+```
+Note that a Raisim License is required to continue. Follow the instruction in the RaisimLib to acquire a license.
 
 
 # Run experiments
@@ -46,5 +47,6 @@ conda create --name <env_name> --file requirement.txt python=3.10
 wandb sweep rl/rl_torch/sweep/sweep_dacgpi_pm3_augment.yml 
 ```
 add an argument, --count 100, when activating the wandb agent 
+
 
 
