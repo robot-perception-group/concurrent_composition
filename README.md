@@ -50,11 +50,12 @@ python3 compose.py
 
 
 # Run experiments
-- hyperparameter tuning and ablation study 
+The experiments are stored in the sweep folder
+- For example, hyperparameter tuning for dacgpi
 ```console
 wandb sweep rl/rl_torch/sweep/sweep_dacgpi_pm3_augment.yml 
 ```
-add an argument, --count 100, when activating the wandb agent 
+add an argument, "--count 100", when activating the wandb agent 
 
 
 
