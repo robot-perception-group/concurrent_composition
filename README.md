@@ -29,6 +29,7 @@ cp -r $WORKSPACE/raisim_multitask_env/ $RAISIM_WORKSPACE/raisimLib/raisimGymTorc
 ```console
 python3 $RAISIM_WORKSPACE/raisimLib/raisimGymTorch setup.py develop
 ```
+Note that a Raisim License is required.
 
 
 # install the agent
