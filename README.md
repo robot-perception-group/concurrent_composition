@@ -24,6 +24,7 @@ export WORKSPACE="$PWD/concurrent_composition"
 cd $WORKSPACE/rl
 conda create --name concurrent --file requirement.txt python=3.10
 ```
+make sure you have the compatible cuda that work with torch>=1.13.0 
 
 - clone and install raisim follow the instruction: https://raisim.com/sections/Installation.html
 
@@ -39,6 +40,13 @@ cd $RAISIM_WORKSPACE/raisimGymTorch
 python setup.py develop
 ```
 Note that a Raisim License is required to continue. Follow the instruction in the RaisimLib to acquire a license.
+
+
+- test the setup by running the compositional agent, you can visualize the training by manually open the unity in raisimLib/raisimUnity/linux and check the auto-connect box
+```console
+cd $WORKSPACE/rl/rl_torch
+python3 compose.py
+```
 
 
 # Run experiments

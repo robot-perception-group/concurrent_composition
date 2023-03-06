@@ -24,7 +24,7 @@ class SACAgent(RaisimAgent):
 
         env_cfg.update(
             dict(
-                env_name="quadcopter_task0",
+                env_name="pointmass3d",
                 num_envs=200,
                 episode_max_step=200,
                 total_episodes=int(10),
@@ -118,7 +118,8 @@ class SACAgent(RaisimAgent):
 
         self.q1_optimizer = Adam(self.critic.Q1.parameters(), lr=self.lr)
         self.q2_optimizer = Adam(self.critic.Q2.parameters(), lr=self.lr)
-        self.policy_optimizer = Adam(self.policy.parameters(), lr=self.policy_lr)
+        self.policy_optimizer = Adam(
+            self.policy.parameters(), lr=self.policy_lr)
 
         if self.entropy_tuning:
             self.alpha_lr = self.agent_cfg["alpha_lr"]
@@ -152,7 +153,8 @@ class SACAgent(RaisimAgent):
             soft_update(self.critic_target, self.critic, self.tau)
 
         if self.per:
-            batch, indices, weights = self.replay_buffer.sample(self.mini_batch_size)
+            batch, indices, weights = self.replay_buffer.sample(
+                self.mini_batch_size)
         else:
             batch = self.replay_buffer.sample(self.mini_batch_size)
             weights = 1
@@ -162,9 +164,12 @@ class SACAgent(RaisimAgent):
         )
         policy_loss, entropies = self.calc_policy_loss(batch, weights)
 
-        update_params(self.policy_optimizer, self.policy, policy_loss, self.grad_clip)
-        update_params(self.q1_optimizer, self.critic.Q1, q1_loss, self.grad_clip)
-        update_params(self.q2_optimizer, self.critic.Q2, q2_loss, self.grad_clip)
+        update_params(self.policy_optimizer, self.policy,
+                      policy_loss, self.grad_clip)
+        update_params(self.q1_optimizer, self.critic.Q1,
+                      q1_loss, self.grad_clip)
+        update_params(self.q2_optimizer, self.critic.Q2,
+                      q2_loss, self.grad_clip)
 
         if self.entropy_tuning:
             entropy_loss = self.calc_entropy_loss(entropies, weights)
