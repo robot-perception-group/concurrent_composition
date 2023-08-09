@@ -41,7 +41,7 @@ cd concurrent_composition/
 
 - The experiments are stored in the sweep folder. For example, hyperparameter tuning for dac in Pointmass environment
 ```console
-wandb sweep sweep/dac_ptr_transfer.yml --count 100
+wandb sweep sweep/dac_ptr_transfer.yml --count 25
 ```
 The experimental results will gather in Wandb. 
 
