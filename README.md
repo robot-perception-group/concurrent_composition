@@ -18,9 +18,10 @@ mkdir MultitaskRL
 cd MultitaskRL
 ```
 
-- download isaac-gym https://developer.nvidia.com/isaac-gym
-- extract isaac-gym to the workspace 
-- create conda environment and install the dependencies 
+- setup isaac-gym 
+1. download isaac-gym from https://developer.nvidia.com/isaac-gym
+2. extract isaac-gym to the workspace 
+3. create conda environment and install the dependencies 
 ```console
 bash IsaacGym_Preview_4_Package/isaacgym/create_conda_env_rlgpu.sh 
 conda activate rlgpu
