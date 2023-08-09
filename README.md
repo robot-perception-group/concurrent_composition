@@ -35,16 +35,25 @@ pip install -r concurrent_composition/requirements.txt
 
 # Run experiments
 - enter the RL workspace
-```
+```console
 cd concurrent_composition/
 ```
 
-The experiments are stored in the sweep folder
-- For example, hyperparameter tuning for dac in Pointmass environment
+- The experiments are stored in the sweep folder. For example, hyperparameter tuning for dac in Pointmass environment
 ```console
 wandb sweep sweep/dac_ptr_transfer.yml --count 100
 ```
+The experimental results will gather in Wandb. 
 
+- To train a agent
+```console
+python3 run.py agent=DACGPI env=Pointer2D env.save_model=True
+```
+
+- To play a trained agent, first specify the path to the model in play_ptr2d.py, then run the command
+```console
+python3 play.py agent=DACGPI env=PointMass2D env.sim.headless=False env.num_envs=1
+```
 
 
 
