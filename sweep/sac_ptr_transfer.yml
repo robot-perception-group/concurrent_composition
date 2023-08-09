@@ -1,0 +1,32 @@
+program: run.py
+method: grid
+metric:
+  goal: maximize
+  name: reward/train
+
+parameters:
+  agent.lr:
+    values: [[0.003248,0.003826], [0.001881,0.007689], [0.002956,0.008723], [0.00439,0.006706], [0.003256,0.005154]]
+  env.task.multi:
+    parameters:
+      w_nav:
+        values: [[0, 1, 0.5, 0, 0]]
+      w_hov:
+        values: [[0, 1, 0.5, 0, 0]]
+      w_eval_nav:
+        values: [[1, 0, 0, 0, 10]]
+      w_eval_hov:
+        values: [[1, 0, 0, 0, 10]]
+  buffer.mini_batch_size:
+    values: [4096]
+  env.num_envs:
+    values: [1024]
+  env.single_task:
+    values: [False]
+
+command:
+  - ${env}
+  - python
+  - ${program}
+  - agent=SAC
+  - env=Pointer2D

@@ -1,0 +1,28 @@
+program: run.py
+method: grid
+metric:
+  goal: maximize
+  name: reward/eval
+
+parameters:
+  seed:
+    values: [4679,31991,15131,9221,7039,81953,6551,33191,76001,80923]
+  agent.lr:
+    values: [0.008484]
+  agent.policy_lr:
+    values: [0.00599]
+  buffer.mini_batch_size:
+    values: [4096]
+  env.num_envs:
+    values: [1024]
+  env.feature.type:
+    values: ["augment", "regular"]
+  env.single_task: 
+    values: [False]
+    
+command:
+  - ${env}
+  - python
+  - ${program}
+  - agent=MSF
+  - env=PointMass2D

@@ -1,0 +1,48 @@
+env_name: "Pointer2D"
+num_envs: 1024
+dim: 2
+total_episodes: 100
+max_episode_length: 500
+single_task: False # overwrite all task_weight to nav_w
+
+eval: True
+eval_interval: 4
+eval_episodes: 1
+
+log_interval: 5 # log learning state to wandb  
+log_path: "../logs/"  # config, model log path
+save_model: False  # save model after evaluation
+record: False  # dump config to log_path
+
+task:
+  switch_threshold: 3 # [m] distance threshold to switch task from nav to hov 
+  single:
+    w_nav:      [1, 0, 0, 0, 1]  # p, v, ang, angvel, success
+    w_hov:      [1, 0, 0, 0, 1]
+    w_eval_nav: [1, 0, 0, 0, 1]
+    w_eval_hov: [1, 0, 0, 0, 1]
+  multi:
+    w_nav:      [0, 1, 0.5, 0, 0]  # p, v, ang, angvel, success
+    w_hov:      [0, 1, 0.5, 0, 0]
+    w_eval_nav: [1, 0, 0, 0, 10]
+    w_eval_hov: [0, 1, 0, 0, 10]
+
+goal:
+  goal_lim: [10, 3, 1] # range for postiion, vel, angle [pi] goal
+  rand_rot_goal: True # random yaw angle target
+  rand_vel_goal: True # random vx target (body frame)
+  reset_dist: 256 # max dist^2 to reset env
+
+feature:
+  pos_index: 3 # position x index in observation
+  success_threshold: [1, 1, 1, 1]  # pos[m], vel[m/s], ang[rad], angvel[rad/s]
+  type: "regular"
+  simple: [True, False, False, False, False]
+  regular: [True, True, True, True, True]
+  augment: [True, True, True, True, True]
+  
+sim:
+  sim_device: "cuda:0"
+  headless: True # set False to visualize IsaacGymEnv
+  compute_device_id: 0
+  graphics_device_id: 0

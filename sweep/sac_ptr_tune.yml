@@ -1,0 +1,26 @@
+program: run.py
+method: bayes
+metric:
+  goal: maximize
+  name: reward/eval
+
+parameters:
+  agent.lr:
+    min: 0.001
+    max: 0.01
+  agent.policy_lr:
+    min: 0.001
+    max: 0.01
+  buffer.mini_batch_size:
+    values: [4096]
+  env.num_envs:
+    values: [1024]
+  env.single_task:
+    values: [False]
+
+command:
+  - ${env}
+  - python
+  - ${program}
+  - agent=SAC
+  - env=Pointer2D

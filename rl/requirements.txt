@@ -1,6 +1,0 @@
-wandb==0.13.10
-torch==1.13.1
-protobuf==3.20.3
-scipy==1.10.1
-rltorch==0.1.0
-opencv-python==4.7.0.72

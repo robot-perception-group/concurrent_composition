@@ -3,6 +3,7 @@ data/
 raisim_drone/
 .vscode/
 log/
+logs/
 wandb/
 wandb/*
 img/
