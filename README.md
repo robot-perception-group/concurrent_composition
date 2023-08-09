@@ -52,7 +52,7 @@ python3 run.py agent=DACGPI env=Pointer2D env.save_model=True
 
 - To play a trained agent, first specify the path to the model in *play_ptr2d.py*, then run the command
 ```console
-python3 play.py agent=DACGPI env=PointMass2D env.sim.headless=False env.num_envs=1
+python3 play_ptr2d.py agent=DACGPI env=PointMass2D env.sim.headless=False env.num_envs=1
 ```
 
 
