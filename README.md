@@ -12,50 +12,39 @@ See: https://www.gnu.org/licenses/gpl-3.0.en.html
 
 
 # installation
-- clone this repository 
-- specify the workspace in the console
+- create workspace
 ```console
-export RAISIM_WORKSPACE="$PWD/raisimLib"
-export WORKSPACE="$PWD/concurrent_composition"
+mkdir MultitaskRL
+cd MultitaskRL
 ```
 
+- download isaac-gym https://developer.nvidia.com/isaac-gym
+- extract isaac-gym to the workspace 
 - create conda environment and install the dependencies 
 ```console
-cd $WORKSPACE/rl
-conda create --name concurrent --file requirement.txt python=3.10
+bash IsaacGym_Preview_4_Package/isaacgym/create_conda_env_rlgpu.sh 
+conda activate rlgpu
 ```
-make sure you have the compatible cuda that work with torch>=1.13.0 
 
-- clone and install raisim follow the instruction: https://raisim.com/sections/Installation.html
-
-
-- copy the environment to the Raisim workspace
+- clone this repository to the workspace and install dependencies
 ```console
-cp -r $WORKSPACE/raisim_multitask_env/* $RAISIM_WORKSPACE/raisimGymTorch/raisimGymTorch/env/envs/
+git clone https://github.com/robot-perception-group/concurrent_composition.git
+pip install -r concurrent_composition/requirements.txt
 ```
-
-- build the environment 
-```console
-cd $RAISIM_WORKSPACE/raisimGymTorch
-python setup.py develop
-```
-Note that a Raisim License is required to continue. Follow the instruction in the RaisimLib to acquire a license.
-
-
-- test the setup by running the compositional agent, you can visualize the training by manually open the unity in raisimLib/raisimUnity/linux and check the auto-connect box
-```console
-cd $WORKSPACE/rl/rl_torch
-python3 compose.py
-```
-
 
 # Run experiments
-The experiments are stored in the sweep folder
-- For example, hyperparameter tuning for dacgpi
-```console
-wandb sweep rl/rl_torch/sweep/sweep_dacgpi_pm3_augment.yml 
+- enter the RL workspace
 ```
-add an argument, "--count 100", when activating the wandb agent 
+cd concurrent_composition/
+```
+
+The experiments are stored in the sweep folder
+- For example, hyperparameter tuning for dac in Pointmass environment
+```console
+wandb sweep sweep/dac_ptr_transfer.yml --count 100
+```
+
+
 
 
 
